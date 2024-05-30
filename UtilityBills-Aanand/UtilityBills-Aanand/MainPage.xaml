@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UtilityBills_Aanand.MainPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+
+    <StackLayout Margin="30,50,30,0" >
+
+        <Label Text="Utility Bill Calculator" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+        <Label Text="Choose Your Province"  TextColor="Black" FontSize="Medium" Margin="0,20,0,0" />
+
+        <Picker x:Name="ProvincePicker" Title="Select Your Province..." SelectedIndexChanged="ProvincePicker_SelectedIndexChanged">
+            <Picker.Items>
+                <x:String>AB</x:String>
+                <x:String>BC</x:String>
+                <x:String>ON</x:String>
+                <x:String>NL</x:String>
+                <x:String>NB</x:String>
+                <x:String>NS</x:String>
+                <x:String>PE</x:String>
+                <x:String>QC</x:String>
+                <x:String>MB</x:String>
+                <x:String>SK</x:String>
+                <x:String>NT</x:String>
+                <x:String>NU</x:String>
+                <x:String>YT</x:String>
+            </Picker.Items>
+        </Picker>
+
+
+
+        <Label Text="Daytime usage (kwh)" TextColor="Black" FontSize="Medium" Margin="0,20,0,0"/>
+        <Entry x:Name="DaytimeUsageEntry" Keyboard="Numeric" Placeholder="Enter the daytime usage"/>
+
+        <Label Text="Evening usage (kwh)"  TextColor="Black" FontSize="Medium" Margin="0,20,0,0" />
+        <Entry x:Name="EveningUsageEntry" Keyboard="Numeric" Placeholder="Enter the evening usage"   />
+
+
+        <StackLayout Margin="0,20,0,0" >
+            <StackLayout.Orientation>
+                <OnPlatform x:TypeArguments="StackOrientation">
+                    <On Platform="Android" Value="Horizontal" />
+                    <On Platform="iOS" Value="Vertical" />
+                </OnPlatform>
+            </StackLayout.Orientation>
+
+            <Label Text="Did you use a renewable energy source?" TextColor="Black" FontSize="Medium"/>
+            <Switch x:Name="RenewableSwitch" IsToggled="false" HorizontalOptions="Start"></Switch>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="CALCULATE" BackgroundColor="SkyBlue"  Clicked="CalculateBtnClicked" />
+            <Button Text="RESET" BackgroundColor="SkyBlue"  Clicked="ResetBtnClicked"/>
+        </StackLayout>
+
+
+        <Label Text="You must enter valid usage values."  FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Background="brown"
+               Margin="0,10,0,0" x:Name="ErrorLabel" IsVisible="false"/>
+
+
+        <StackLayout x:Name="OutputStack" IsVisible="false">
+            <Label Text="Charge Breakdown"  FontSize="Medium" TextColor="black" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="10"/>
+
+            <Label Text="" FontSize="Small" x:Name="DayTimeUsageLabel"/>
+            <Label Text="" FontSize="Small" x:Name="EveningUsageLabel"/>
+            <Label Text="" FontSize="Small" FontAttributes="Bold" x:Name="TotalUsageLabel"/>
+            <Label Text="" FontSize="Small" x:Name="SalesTaxLabel"/>
+            <Label Text="" FontSize="Small" x:Name="EnvRebateLabel"/>
+            <Label Text="-----------------------------------"/>
+           
+
+            <Label Text=""  FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" IsVisible="false"
+               BackgroundColor="LightCoral" TextColor="Black" Padding="0,5,0,0" x:Name="PayLabel"/>
+        </StackLayout>
+
+
+
+
+
+
+    </StackLayout>
+
+</ContentPage>
